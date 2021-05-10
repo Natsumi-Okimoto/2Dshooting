@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     private string horizontal = "Horizontal";
     private string vertical = "Vertical";
+    private Vector2 pos;
+
     [SerializeField]
     public float moveSpeed;
     [SerializeField]
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+        Clamp();
     }
 
     private void Move()
@@ -39,5 +42,16 @@ public class PlayerController : MonoBehaviour
             }
            
         }
+    }
+
+    void Clamp()
+    {
+       
+        pos = transform.position;
+
+        pos.x = Mathf.Clamp(pos.x, -5, 5);
+        pos.y = Mathf.Clamp(pos.y, -5, 5);
+
+        transform.position = pos;
     }
 }
