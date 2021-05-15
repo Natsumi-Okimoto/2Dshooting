@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private string horizontal = "Horizontal";
     private string vertical = "Vertical";
     private Vector2 pos;
+    Animator animator;
 
     [SerializeField]
     public float moveSpeed;
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -23,6 +24,8 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         Clamp();
+
+        
     }
 
     private void Move()
@@ -40,7 +43,7 @@ public class PlayerController : MonoBehaviour
             {
                 transform.Translate(x * moveSpeed * Time.deltaTime, y * moveSpeed * Time.deltaTime, 0);
             }
-           
+            animator.SetFloat("H", x);
         }
     }
 
@@ -54,4 +57,6 @@ public class PlayerController : MonoBehaviour
 
         transform.position = pos;
     }
+
+   
 }
