@@ -4,8 +4,8 @@ using UnityEngine;
 
 public static class CUtility 
 {
-    static Vector2 MoveLimitTopLeft = new Vector2(-5.7f, 4.2f);
-    static Vector2 MoveLimitButtomRight = new Vector2(1.7f, -4.2f);
+    static Vector2 MoveLimitTopLeft = new Vector2(-8.1f, 4.2f);
+    static Vector2 MoveLimitButtomRight = new Vector2(4.0f, -4.2f);
 
     static Vector2 EnemyLimitTopLeft = new Vector2(-7.0f, 6.2f);
     static Vector2 EnemyLimitButtomRight = new Vector2(3.0f, -5.2f);
@@ -27,4 +27,13 @@ public static class CUtility
                 position.y < EnemyLimitButtomRight.y);
     }
    
+    public static Vector3 GetDirection(float angle)
+    {
+        return new Vector3
+            (
+            Mathf.Cos(angle * Mathf.Deg2Rad),
+            Mathf.Sin(angle * Mathf.Deg2Rad),
+            0
+            );
+    }
 }

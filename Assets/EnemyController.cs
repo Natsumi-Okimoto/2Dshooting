@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     int Cnt = 0;
+    int Life = 60;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,18 @@ public class EnemyController : MonoBehaviour
         if (CUtility.IsOut(transform.position))
         {
             Destroy(gameObject);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Shot")
+        {
+            Life -= collision.GetComponent<CShot>().ShotPower;
+            if (Life <= 0)
+            {
+                Destroy(gameObject);
+            }
+            Destroy(collision.gameObject);
         }
     }
 }
