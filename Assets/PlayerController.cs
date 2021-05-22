@@ -100,9 +100,17 @@ public class PlayerController : MonoBehaviour
             Instantiate(ShotObjs[0], transform.position + LowerSpeedShotOffsetPos[i], Quaternion.identity);
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Bullet")
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
+    }
 
-   
-    
+
+
 
     private void Move()
     {

@@ -19,6 +19,10 @@ public class EnemyController : MonoBehaviour
         {
             transform.position += new Vector3(0.0f, -3.0f, 0.0f) * Time.deltaTime;
         }
+        if (Cnt == 300)
+        {
+            GameObject.Find("GameManager").GetComponent<CGameManager>().BulletFactory[0].CreateBullet(transform.position, 0);
+        }
         if (Cnt > 80 + 240)
         {
             transform.position += new Vector3(0.0f, 3.0f, 0.0f) * Time.deltaTime;
@@ -33,6 +37,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Shot")
         {
+            //Debug.Log("ÉcÅ[Ç©");
             Life -= collision.GetComponent<CShot>().ShotPower;
             if (Life <= 0)
             {
