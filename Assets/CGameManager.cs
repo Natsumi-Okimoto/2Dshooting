@@ -30,7 +30,7 @@ public class CGameManager : MonoBehaviour
             }
         }
 
-        public void CreateBullet(Vector3 pos, int color)
+        public void CreateBullet(Vector3 pos, int color,int script_type,float speed,float angle)
         {
             GameObject newParent = new GameObject("Empty");
             Bullet = Instantiate(newParent, pos, Quaternion.identity);
@@ -39,7 +39,13 @@ public class CGameManager : MonoBehaviour
             sr.sprite = BulletSprite[color];
             sr.sortingLayerName = "Bullet";
             Bullet.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
-            Bullet.AddComponent<CBullet>();
+            switch (script_type)
+            {
+                case 0:
+                Bullet.AddComponent<CBullet>().SetParam(speed, angle);
+                    break;
+            }
+            
             if (ColliderType)
             {
                 CircleCollider2D cc = Bullet.AddComponent<CircleCollider2D>();
@@ -71,6 +77,8 @@ public class CGameManager : MonoBehaviour
             BulletFactory[i].Load();
         }
     }
+
+   
 
     // Update is called once per frame
     void Update()

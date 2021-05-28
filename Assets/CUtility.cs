@@ -77,4 +77,9 @@ public static class CUtility
         Sprite[] sprites = Resources.LoadAll<Sprite>(fileName);
         return System.Array.Find<Sprite>(sprites, (sprite) => sprite.name.Equals(spriteName));
     }
+    //“n‚³‚ê‚½-ang`ang‚Ü‚Å‚Ìƒ‰ƒ“ƒ_ƒ€‚ÈŠp“x‚ğ•Ô‚·
+    public static float Rang(float ang)
+    {
+        return (-ang + ang * 2.0f * (Random.value * 10000.0f) / 10000.0f);
+    }
 }
